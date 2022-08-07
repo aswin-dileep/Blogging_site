@@ -2,6 +2,7 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const _ = require('lodash');
 const ejs = require("ejs");
 const { forEach } = require("lodash");
 
@@ -49,8 +50,10 @@ app.get("/posts/:topic",(req,res)=>{
   
    posts.forEach(function(post){
     const storedTitle = post.title;
-    if(storedTitle===requestTitle){
+    if(_.lowerCase(storedTitle)===_.lowerCase(requestTitle)){
       console.log("maching found")
+    }else{
+      console.log('not a match')
     }
    });
 });
